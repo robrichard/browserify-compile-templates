@@ -1,0 +1,12 @@
+{
+  "name": "compile-templates",
+  "version": "0.1.0",
+  "description": "Compiles templates from HTML script tags into CommonJS modules",
+  "main": "index.js",
+  "author": "Rob Richard",
+  "dependencies": {
+    "underscore": "^1.6.0",
+    "htmlparser": "^1.7.7",
+    "mkdirp": "^0.3.5"
+  }
+}
