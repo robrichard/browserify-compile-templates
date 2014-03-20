@@ -1,25 +1,38 @@
-"use strict";
-
 var compileFile = require('./lib/compile.js');
-var fs = require('graceful-fs');
-var _ = require('underscore');
-var file = require('file');
-var replaceExt = require('replace-ext');
+var path = require('path');
 
-module.exports = function (options) {
-    _.each(options, function (option) {
-        file.walk(option.input, function (nill, dirPath, dirs, files) {
-            compileDirectory(option.input, option.output, files);
-        });
+var through = require('through2');
+var gutil = require('gulp-util');
+var PluginError = gutil.PluginError;
+
+const PLUGIN_NAME = 'gulp-compile-templates';
+
+function gulpCompiler() {
+    var stream = through.obj(function (file, enc, callback) {
+        var output;
+        var dest = gutil.replaceExtension(file.path, ".js");
+
+        if (file.isNull()) {
+            this.push(file); // Do nothing if no contents
+            return callback();
+        }
+
+        if (file.isBuffer()) {
+            output = compileFile(file.contents);
+            file.contents = new Buffer(output, "utf-8");
+            file.path = dest;
+            this.push(file);
+            return callback();
+        }
+
+        if (file.isStream()) {
+            this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
+            return callback();
+        }
     });
 
+    // returning the file stream
+    return stream;
+}
 
-};
-
-var compileDirectory = function (inputBaseDir, outputBaseDir, files) {
-    _.each(files, function (file) {
-        var relativePath = _.last(file.split(inputBaseDir));
-        var newFile = outputBaseDir + '/' + replaceExt(relativePath, '.js') + '.js';
-        compileFile(file, newFile);
-    });
-};
+module.exports = gulpCompiler;
