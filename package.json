@@ -1,5 +1,5 @@
 {
-  "name": "compile-templates",
+  "name": "gulp-compile-templates",
   "version": "0.1.0",
   "description": "Compiles templates from HTML script tags into CommonJS modules",
   "main": "index.js",
