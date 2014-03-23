@@ -5,13 +5,21 @@ var through = require('through2');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 
-const PLUGIN_NAME = 'gulp-compile-templates';
+var verbose = false;
 
-function gulpCompiler(passedOptions) {
-    var options = _.defaults(passedOptions || {}, {
-            verbose: true
-        });
+function log() {
+    if (verbose) {
+        var plugin = '[' + gutil.colors.cyan('gulp-compile-templates') + ']';
+        var args = Array.prototype.slice.call(arguments);
+        args.unshift(plugin);
+        gutil.log.apply(gutil, args)
+    }
+}
 
+function gulpCompiler(options) {
+    if (options && options.verbose) {
+        verbose = true;
+    }
     var stream = through.obj(function (file, enc, callback) {
         var output;
         var dest = gutil.replaceExtension(file.path, ".js");
@@ -26,14 +34,12 @@ function gulpCompiler(passedOptions) {
             file.contents = new Buffer(output, "utf-8");
             file.path = dest;
             this.push(file);
-            if (options.verbose) {
-                gutil.log('Compiled template:', file.path);
-            }
+            log('Compiled template:', file.path);
             return callback();
         }
 
         if (file.isStream()) {
-            this.emit('error', new PluginError(PLUGIN_NAME, 'Buffers not supported!'));
+            this.emit('error', new PluginError('gulp-compile-templates', 'Buffers not supported!'));
             return callback();
         }
     });
