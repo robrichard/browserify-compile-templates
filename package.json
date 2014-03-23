@@ -6,8 +6,8 @@
   "author": "Rob Richard",
   "dependencies": {
     "underscore": "^1.6.0",
-    "htmlparser": "^1.7.7",
     "gulp-util": "^2.2.14",
-    "through2": "^0.4.1"
+    "through2": "^0.4.1",
+    "htmlparser2": "~3.7.1"
   }
 }
