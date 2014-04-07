@@ -1,13 +1,12 @@
 {
-  "name": "gulp-compile-templates",
+  "name": "browserify-compile-templates",
   "version": "0.1.0",
-  "description": "Compiles templates from HTML script tags into CommonJS modules",
+  "description": "Compiles templates from HTML script tags into CommonJS modules in a browserify transform",
   "main": "index.js",
   "author": "Rob Richard",
   "dependencies": {
     "underscore": "^1.6.0",
-    "gulp-util": "^2.2.14",
-    "through2": "^0.4.1",
-    "htmlparser2": "~3.7.1"
+    "htmlparser2": "~3.7.1",
+    "browserify-transform-tools": "^1.2.1"
   }
 }
