@@ -3,10 +3,19 @@
   "version": "0.1.0",
   "description": "Compiles templates from HTML script tags into CommonJS modules in a browserify transform",
   "main": "index.js",
-  "author": "Rob Richard",
+  "homepage": "https://github.com/robrichard/browserify-compile-templates",
+  "bugs": "https://github.com/robrichard/browserify-compile-templates/issues",
+  "author": "Rob Richard <rob@robrichard.net>",
   "dependencies": {
     "underscore": "^1.6.0",
     "htmlparser2": "~3.7.1",
     "browserify-transform-tools": "^1.2.1"
-  }
+  },
+  "keywords": [
+    "template",
+    "browserify",
+    "browserify-transform",
+    "transform",
+    "underscore"
+  ],
 }
