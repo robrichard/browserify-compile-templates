@@ -2,10 +2,10 @@
 
 Compiles [underscore](http://underscorejs.org/#template) templates from HTML script tags into CommonJS in a browserify transform. You can add multiple script tags to  each file. Requiring the file will return an object with a property for each script tag. The ID attribute is the key and the compiled template function as the value.
 
-See the [underscore documentation](http://underscorejs.org/#template)) for more details.
+See the [underscore documentation](http://underscorejs.org/#template) for more details.
+
 
 # Usage
-
 
 ## Install
 
@@ -55,15 +55,15 @@ The advantage of this transform over other transforms or plugins is that the tem
 ```javascript
 (function (root, factory) {
     if (typeof module !== 'undefined') {
+        // CommonJS - templates are precompiled and bundled in with JS
         var templates = require('/path/to/myTemplates');
-        // CommonJS
         factory(
             module,
             templates.template1,
             templates.tempalte2
         );
     } else {
-        // Borwser globals. Need to compile templates client-side
+        // Borwser globals. Templates are included in html and need to be compiled client-side
         var $template1 = $('#template1');
         var $tempalte2 = $('#template2');
         factory(
