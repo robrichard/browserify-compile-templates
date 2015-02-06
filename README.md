@@ -16,8 +16,8 @@ npm install --save-dev browserify-compile-templates
 ## Create a template file
 myTemplates.html
 
-Use the ID attribute to identify the template from your JS source.
-Use data-variable-name to change the variable name that is used in the underscore template. obj is the default
+Use the `id` attribute to identify the template from your JS source.
+Use data-variable-name to change the variable name that is used in the underscore template. `obj` is the default
 
 ```html
 <script type="text/template" id="template1">
@@ -28,6 +28,8 @@ Use data-variable-name to change the variable name that is used in the underscor
 	<li><%- data.name %> <<%- data.email %>></li>
 </script>
 ```
+
+Alternatively, if you do not want to scope your template values under a variable, provide the `{ noVar: true }` option to the transform. **Note:** This will affect the compilation of ___all___ your templates!
 
 ## Require the template file
 A JS file
