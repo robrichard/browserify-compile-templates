@@ -6,8 +6,10 @@ module.exports = transformTools.makeStringTransform('compile-templates', {}, fun
     var file = transformOptions.file;
     var output;
     var extension = path.extname(file);
+    var options = transformOptions.opts;
+
     if (extension === '.html') {
-        output = compileFile(content);
+        output = compileFile(content, options);
         // If compileFile returned an error send that to done
         if (output instanceof Error) {
             done(output.message);
