@@ -85,7 +85,7 @@ The commonJS environment gets the benefit of the precompiled template. Other env
 
 ```javascript`
 var gulp = require('gulp');
-var template = require('./browserify-compile-templates/index.js');
+var template = require('browserify-compile-templates');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var concat = require('gulp-concat');
