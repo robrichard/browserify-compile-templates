@@ -7,8 +7,13 @@ module.exports = transformTools.makeStringTransform('compile-templates', {}, fun
     var output;
     var extension = path.extname(file);
     var options = transformOptions.opts;
+    var acceptedExt = '.html';
 
-    if (extension === '.html') {
+    if(options.extension){
+        acceptedExt = options.extension;
+    }
+
+    if (extension === acceptedExt) {
         output = compileFile(content, options);
         // If compileFile returned an error send that to done
         if (output instanceof Error) {
