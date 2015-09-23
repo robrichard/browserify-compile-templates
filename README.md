@@ -80,3 +80,31 @@ The advantage of this transform over other transforms or plugins is that the tem
 ```
 
 The commonJS environment gets the benefit of the precompiled template. Other environments can still include the file on the page and access it by ID.
+
+# Usage in gulpfile
+
+```javascript`
+var gulp = require('gulp');
+var template = require('browserify-compile-templates');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var concat = require('gulp-concat');
+
+gulp.task('default', function() {
+    var bundleStream = browserify('./index.js', {
+        transform: [
+            [template, {
+                engine: 'lodash',
+                extension: '.jst'
+            }]
+        ]
+    }).bundle();
+
+    bundleStream
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('.'));
+})
+```
+
+The option engine can be either underscore,lodash or none (for global underscore).
+
