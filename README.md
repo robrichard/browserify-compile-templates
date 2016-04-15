@@ -28,6 +28,7 @@ Use data-variable-name to change the variable name that is used in the underscor
 	<li><%- data.name %> <<%- data.email %>></li>
 </script>
 ```
+
 ## Transform options
 **Note:** This will affect the compilation of ___all___ your templates!
 
