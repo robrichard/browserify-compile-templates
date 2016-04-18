@@ -29,7 +29,11 @@ Use data-variable-name to change the variable name that is used in the underscor
 </script>
 ```
 
-Alternatively, if you do not want to scope your template values under a variable, provide the `{ noVar: true }` option to the transform. **Note:** This will affect the compilation of ___all___ your templates!
+## Transform options
+**Note:** This will affect the compilation of ___all___ your templates!
+
+Alternatively, if you do not want to scope your template values under a variable, provide the `{ noVar: true }` option to the transform. 
+If you do not want to require underscore library inside compiled script provide the the `{ globalUnderscore: true }` option to the transform.
 
 ## Require the template file
 A JS file
